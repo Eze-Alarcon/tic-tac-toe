@@ -31,4 +31,6 @@ const someoneWin = (board) => {
   } return false
 }
 
-export { BOARD, TURNS, CONDITION_WIN, someoneWin }
+const checkEndGame = (board) => board.every((item) => item !== null)
+
+export { BOARD, TURNS, CONDITION_WIN, someoneWin, checkEndGame }
