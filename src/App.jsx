@@ -1,5 +1,11 @@
-import React, { useState } from 'react'
-import { BOARD, TURNS, someoneWin, checkEndGame } from './constant'
+import React, { useState, useEffect } from 'react'
+import {
+  BOARD,
+  TURNS,
+  someoneWin,
+  checkEndGame,
+  getRandomIndex,
+} from './constant'
 import { Board } from './layout/Board'
 // import { Intro } from './layout/Intro'
 
@@ -8,6 +14,8 @@ const App = () => {
   const [winner, setWinner] = useState(null)
   const [turn, setTurn] = useState(TURNS.X)
   const [score, setScore] = useState({ X: 0, TIES: 0, O: 0 })
+
+  const player = false
 
   const reset = () => {
     setWinner(null)
@@ -29,6 +37,14 @@ const App = () => {
   }
 
   const updateBoard = (index) => {
+    if (
+      !player &&
+      turn === TURNS.O &&
+      board.at(index) !== null &&
+      winner === null
+    ) {
+      return fightCPU()
+    }
     if (board.at(index) !== null || winner) return
     const newBoard = [...board]
     newBoard[index] = turn
@@ -44,6 +60,17 @@ const App = () => {
     }
     setBoard(() => newBoard)
   }
+
+  const fightCPU = () => {
+    const index = getRandomIndex()
+    updateBoard(index)
+  }
+
+  useEffect(() => {
+    if (!player && turn === TURNS.O) {
+      fightCPU()
+    }
+  })
 
   return (
     <main className='w-full h-screen flex flex-col justify-center items-center gap-5 px-6'>

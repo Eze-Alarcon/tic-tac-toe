@@ -33,4 +33,6 @@ const someoneWin = (board) => {
 
 const checkEndGame = (board) => board.every((item) => item !== null)
 
-export { BOARD, TURNS, CONDITION_WIN, someoneWin, checkEndGame }
+const getRandomIndex = () => Math.floor(Math.random() * 9)
+
+export { BOARD, TURNS, CONDITION_WIN, someoneWin, checkEndGame, getRandomIndex }
