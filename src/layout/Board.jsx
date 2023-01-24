@@ -15,4 +15,4 @@ const Board = ({ winner, turn, TURNS, reset, board, updateBoard, score }) => {
   )
 }
 
-export default Board
+export { Board }

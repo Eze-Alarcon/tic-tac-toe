@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { BOARD, TURNS, someoneWin, checkEndGame } from './constant'
-import Board from './layout/Board'
+import { Board } from './layout/Board'
+// import { Intro } from './layout/Intro'
 
 const App = () => {
   const [board, setBoard] = useState(BOARD)
@@ -55,6 +56,7 @@ const App = () => {
         updateBoard={updateBoard}
         score={score}
       />
+      {/* <Intro /> */}
     </main>
   )
 }
