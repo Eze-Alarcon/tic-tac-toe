@@ -2,12 +2,28 @@ import React, { useState } from 'react'
 import { IconLogo, IconOutlineO, IconOutlineX } from '../assets/Icons'
 import { TURNS } from '../constant'
 
-const Intro = () => {
+const Intro = ({ setIntro, reset, setOpenModal, setPlayer }) => {
   const [active, setActive] = useState(TURNS.X)
 
   const handleClick = (option) => {
     if (option === TURNS.X && active !== TURNS.X) setActive(TURNS.X)
     else if (option === TURNS.O && active !== TURNS.O) setActive(TURNS.O)
+  }
+
+  const startGame = () => {
+    reset()
+    setOpenModal(false)
+    setIntro(false)
+  }
+
+  const cpuGame = () => {
+    setPlayer(false)
+    startGame()
+  }
+
+  const playerGame = () => {
+    setPlayer(true)
+    startGame()
   }
 
   return (
@@ -43,12 +59,14 @@ const Intro = () => {
       </section>
       <section className='w-full flex flex-col gap-4'>
         <button
+          onClick={cpuGame}
           type='button'
           className='w-full h-14 bg-yellow rounded-introSection shadow-shadowCPU pb-2 font-medium text-xl hover:bg-yellowHover'
         >
           NEW GAME (VS CPU)
         </button>
         <button
+          onClick={playerGame}
           type='button'
           className='w-full h-14 bg-blue rounded-introSection shadow-shadowPlayer pb-2 font-medium text-xl hover:bg-blueHover'
         >

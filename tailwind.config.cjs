@@ -20,7 +20,8 @@ module.exports = {
       shadowTurn: 'inset 0px -4px 0px #10212A',
       shadowReset: 'inset 0px -4px 0px #6B8997',
       shadowCPU: 'inset 0px -8px 0px #CC8B13',
-      shadowPlayer: 'inset 0px -8px 0px #118C87'
+      shadowPlayer: 'inset 0px -8px 0px #118C87',
+      ModalNext: 'inset 0px -4px 0px #CC8B13'
     },
     borderRadius: {
       bt: '10px',

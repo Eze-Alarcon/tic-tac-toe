@@ -5,6 +5,12 @@ const TURNS = {
   O: 'O'
 }
 
+const INITIAL_COUNTER = {
+  X: 0,
+  TIES: 0,
+  O: 0
+}
+
 const CONDITION_WIN = [
   [0, 1, 2],
   [3, 4, 5],
@@ -15,6 +21,13 @@ const CONDITION_WIN = [
   [0, 4, 8],
   [2, 4, 6]
 ]
+
+const TEXT_RESPONSES = {
+  playerWin: 'YOU WON',
+  playerLoss: 'OH NO, YOU LOST..',
+  player1Win: 'PLAYER 1 WINS!',
+  player1Loss: 'PLAYER 2 WINS!'
+}
 
 const someoneWin = (board) => {
   for (const condition of CONDITION_WIN) {
@@ -35,4 +48,4 @@ const checkEndGame = (board) => board.every((item) => item !== null)
 
 const getRandomIndex = () => Math.floor(Math.random() * 9)
 
-export { BOARD, TURNS, CONDITION_WIN, someoneWin, checkEndGame, getRandomIndex }
+export { BOARD, TURNS, CONDITION_WIN, INITIAL_COUNTER, TEXT_RESPONSES, someoneWin, checkEndGame, getRandomIndex }
