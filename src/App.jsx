@@ -18,12 +18,11 @@ const App = () => {
   const [score, setScore] = useState(INITIAL_COUNTER)
   const [openModal, setOpenModal] = useState(false)
   const [intro, setIntro] = useState(true)
-  const [player, setPlayer] = useState(false)
+  const [player, setPlayer] = useState(null)
 
   const reset = () => {
     setWinner(null)
     setBoard(BOARD)
-    setTurn(TURNS.X)
   }
 
   const updateScore = (tie = false) => {
@@ -68,11 +67,13 @@ const App = () => {
 
   const fightCPU = () => {
     const index = getRandomIndex()
-    updateBoard(index)
+    setTimeout(() => {
+      updateBoard(index)
+    }, 10)
   }
 
   useEffect(() => {
-    if (!player && turn === TURNS.O) {
+    if (player !== null && !player && turn === TURNS.O) {
       fightCPU()
     }
   })
@@ -86,6 +87,8 @@ const App = () => {
           reset={reset}
           setOpenModal={setOpenModal}
           setPlayer={setPlayer}
+          setTurn={setTurn}
+          turn={turn}
         />
       )}
       {!intro && (
@@ -101,6 +104,8 @@ const App = () => {
           reset={reset}
           setOpenModal={setOpenModal}
           setIntro={setIntro}
+          setPlayer={setPlayer}
+          setTurn={setTurn}
         />
       )}
     </main>

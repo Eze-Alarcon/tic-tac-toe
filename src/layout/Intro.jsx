@@ -1,13 +1,10 @@
-import React, { useState } from 'react'
 import { IconLogo, IconOutlineO, IconOutlineX } from '../assets/Icons'
 import { TURNS } from '../constant'
 
-const Intro = ({ setIntro, reset, setOpenModal, setPlayer }) => {
-  const [active, setActive] = useState(TURNS.X)
-
+const Intro = ({ setIntro, reset, setOpenModal, setPlayer, setTurn, turn }) => {
   const handleClick = (option) => {
-    if (option === TURNS.X && active !== TURNS.X) setActive(TURNS.X)
-    else if (option === TURNS.O && active !== TURNS.O) setActive(TURNS.O)
+    if (option === TURNS.X) setTurn(TURNS.X)
+    else if (option === TURNS.O) setTurn(TURNS.O)
   }
 
   const startGame = () => {
@@ -38,19 +35,19 @@ const Intro = ({ setIntro, reset, setOpenModal, setPlayer }) => {
             onClick={() => handleClick(TURNS.X)}
             type='button'
             className={`h-full w-1/2 rounded-bt grid place-content-center ${
-              active === TURNS.X ? 'bg-silver' : 'bg-dark'
+              turn === TURNS.X ? 'bg-silver' : 'bg-dark'
             }`}
           >
-            <IconOutlineX active={active} />
+            <IconOutlineX active={turn} />
           </button>
           <button
             onClick={() => handleClick(TURNS.O)}
             type='button'
             className={`h-full focus:bg-silver w-1/2 rounded-bt grid place-content-center ${
-              active === TURNS.O ? 'bg-silver' : 'bg-dark'
+              turn === TURNS.O ? 'bg-silver' : 'bg-dark'
             }`}
           >
-            <IconOutlineO active={active} />
+            <IconOutlineO active={turn} />
           </button>
         </div>
         <p className='text-silver text-base opacity-70'>
@@ -59,14 +56,14 @@ const Intro = ({ setIntro, reset, setOpenModal, setPlayer }) => {
       </section>
       <section className='w-full flex flex-col gap-4'>
         <button
-          onClick={cpuGame}
+          onClick={() => cpuGame()}
           type='button'
           className='w-full h-14 bg-yellow rounded-introSection shadow-shadowCPU pb-2 font-medium text-xl hover:bg-yellowHover'
         >
           NEW GAME (VS CPU)
         </button>
         <button
-          onClick={playerGame}
+          onClick={() => playerGame()}
           type='button'
           className='w-full h-14 bg-blue rounded-introSection shadow-shadowPlayer pb-2 font-medium text-xl hover:bg-blueHover'
         >

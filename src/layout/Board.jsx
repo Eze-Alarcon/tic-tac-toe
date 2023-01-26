@@ -17,6 +17,8 @@ const Board = ({
   setOpenModal,
   setIntro,
   player,
+  setPlayer,
+  setTurn,
 }) => {
   return (
     <>
@@ -34,6 +36,8 @@ const Board = ({
             reset={reset}
             winner={winner}
             player={player}
+            setPlayer={setPlayer}
+            setTurn={setTurn}
           />,
           document.body
         )}

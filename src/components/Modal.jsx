@@ -2,7 +2,16 @@ import React from 'react'
 import { IconModalO, IconModalX } from '../assets/Icons'
 import { TURNS, TEXT_RESPONSES } from '../constant'
 
-const Modal = ({ turn, setOpenModal, setIntro, reset, winner, player }) => {
+const Modal = ({
+  turn,
+  setOpenModal,
+  setIntro,
+  reset,
+  winner,
+  player,
+  setPlayer,
+  setTurn,
+}) => {
   const nextRound = () => {
     setOpenModal(false)
     reset()
@@ -11,6 +20,9 @@ const Modal = ({ turn, setOpenModal, setIntro, reset, winner, player }) => {
   const quitGame = () => {
     setIntro(true)
     setOpenModal(false)
+    setPlayer(null)
+    setTurn(TURNS.X)
+    reset()
   }
 
   return (
