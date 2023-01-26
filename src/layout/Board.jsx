@@ -19,6 +19,7 @@ const Board = ({
   player,
   setPlayer,
   setTurn,
+  userSelection,
 }) => {
   return (
     <>
@@ -38,6 +39,7 @@ const Board = ({
             player={player}
             setPlayer={setPlayer}
             setTurn={setTurn}
+            userSelection={userSelection}
           />,
           document.body
         )}

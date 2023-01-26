@@ -14,6 +14,7 @@ import { Intro } from './layout/Intro'
 const App = () => {
   const [board, setBoard] = useState(BOARD)
   const [winner, setWinner] = useState(null)
+  const [userSelection, setUserSelection] = useState(TURNS.X)
   const [turn, setTurn] = useState(TURNS.X)
   const [score, setScore] = useState(INITIAL_COUNTER)
   const [openModal, setOpenModal] = useState(false)
@@ -23,6 +24,7 @@ const App = () => {
   const reset = () => {
     setWinner(null)
     setBoard(BOARD)
+    setTurn(TURNS.X)
   }
 
   const updateScore = (tie = false) => {
@@ -41,7 +43,7 @@ const App = () => {
   const updateBoard = (index) => {
     if (
       !player &&
-      turn === TURNS.O &&
+      turn !== userSelection &&
       board.at(index) !== null &&
       winner === null
     ) {
@@ -69,11 +71,11 @@ const App = () => {
     const index = getRandomIndex()
     setTimeout(() => {
       updateBoard(index)
-    }, 10)
+    }, 50)
   }
 
   useEffect(() => {
-    if (player !== null && !player && turn === TURNS.O) {
+    if (player !== null && !player && turn !== userSelection) {
       fightCPU()
     }
   })
@@ -89,6 +91,8 @@ const App = () => {
           setPlayer={setPlayer}
           setTurn={setTurn}
           turn={turn}
+          setUserSelection={setUserSelection}
+          userSelection={userSelection}
         />
       )}
       {!intro && (
@@ -106,6 +110,7 @@ const App = () => {
           setIntro={setIntro}
           setPlayer={setPlayer}
           setTurn={setTurn}
+          userSelection={userSelection}
         />
       )}
     </main>

@@ -1,10 +1,20 @@
 import { IconLogo, IconOutlineO, IconOutlineX } from '../assets/Icons'
 import { TURNS } from '../constant'
 
-const Intro = ({ setIntro, reset, setOpenModal, setPlayer, setTurn, turn }) => {
+const Intro = ({
+  setIntro,
+  reset,
+  setOpenModal,
+  setPlayer,
+  setUserSelection,
+  userSelection,
+}) => {
   const handleClick = (option) => {
-    if (option === TURNS.X) setTurn(TURNS.X)
-    else if (option === TURNS.O) setTurn(TURNS.O)
+    if (option === TURNS.X) {
+      setUserSelection(TURNS.X)
+    } else if (option === TURNS.O) {
+      setUserSelection(TURNS.O)
+    }
   }
 
   const startGame = () => {
@@ -35,19 +45,19 @@ const Intro = ({ setIntro, reset, setOpenModal, setPlayer, setTurn, turn }) => {
             onClick={() => handleClick(TURNS.X)}
             type='button'
             className={`h-full w-1/2 rounded-bt grid place-content-center ${
-              turn === TURNS.X ? 'bg-silver' : 'bg-dark'
+              userSelection === TURNS.X ? 'bg-silver' : 'bg-dark'
             }`}
           >
-            <IconOutlineX active={turn} />
+            <IconOutlineX active={userSelection} />
           </button>
           <button
             onClick={() => handleClick(TURNS.O)}
             type='button'
             className={`h-full focus:bg-silver w-1/2 rounded-bt grid place-content-center ${
-              turn === TURNS.O ? 'bg-silver' : 'bg-dark'
+              userSelection === TURNS.O ? 'bg-silver' : 'bg-dark'
             }`}
           >
-            <IconOutlineO active={turn} />
+            <IconOutlineO active={userSelection} />
           </button>
         </div>
         <p className='text-silver text-base opacity-70'>

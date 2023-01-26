@@ -11,6 +11,7 @@ const Modal = ({
   player,
   setPlayer,
   setTurn,
+  userSelection,
 }) => {
   const nextRound = () => {
     setOpenModal(false)
@@ -30,14 +31,14 @@ const Modal = ({
       <article className='h-56 w-screen bg-semiDark flex flex-col justify-center items-center gap-6 z-30'>
         {!player && winner && (
           <p className=' text-silver text-base font-bold'>
-            {turn === TURNS.X
+            {userSelection === turn
               ? TEXT_RESPONSES.playerWin
               : TEXT_RESPONSES.playerLoss}
           </p>
         )}
         {player && winner && (
           <p className=' text-silver text-base font-bold'>
-            {turn === TURNS.X
+            {userSelection === turn
               ? TEXT_RESPONSES.player1Win
               : TEXT_RESPONSES.player1Loss}
           </p>
