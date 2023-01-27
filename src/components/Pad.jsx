@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { IconO, IconX } from '../assets/Icons'
+import { AppContext } from '../context/AppContext'
 
-const Pad = ({ board, TURNS, updateBoard }) => {
+const Pad = () => {
+  const { states, functions, constants } = useContext(AppContext)
+
+  const { board } = states
+
+  const { updateBoard } = functions
+
+  const { TURNS } = constants
   return (
     <article className='grid grid-cols-3 grid-rows-3 gap-5 mb-5'>
       {board.map((item, index) => {

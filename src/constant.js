@@ -11,6 +11,11 @@ const INITIAL_COUNTER = {
   O: 0
 }
 
+const OPPONENTS = {
+  CPU: 'cpu',
+  PLAYER: 'player'
+}
+
 const CONDITION_WIN = [
   [0, 1, 2],
   [3, 4, 5],
@@ -48,4 +53,4 @@ const checkEndGame = (board) => board.every((item) => item !== null)
 
 const getRandomIndex = () => Math.floor(Math.random() * 9)
 
-export { BOARD, TURNS, CONDITION_WIN, INITIAL_COUNTER, TEXT_RESPONSES, someoneWin, checkEndGame, getRandomIndex }
+export { BOARD, TURNS, OPPONENTS, CONDITION_WIN, INITIAL_COUNTER, TEXT_RESPONSES, someoneWin, checkEndGame, getRandomIndex }

@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { IconLogo, IconRestart } from '../assets/Icons'
+import { AppContext } from '../context/AppContext'
 
-const Header = ({ winner, TURNS, turn, reset }) => {
+const Header = () => {
+  const { states, functions, constants } = useContext(AppContext)
+
+  const { winner, turn } = states
+
+  const { reset } = functions
+
+  const { TURNS } = constants
   return (
     <header className='grid grid-cols-3 grid-rows-1 gap-5'>
       <div className='w-24 h-10 place-self-start '>

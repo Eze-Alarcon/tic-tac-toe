@@ -1,28 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { IconModalO, IconModalX } from '../assets/Icons'
-import { TURNS, TEXT_RESPONSES } from '../constant'
+import { AppContext } from '../context/AppContext'
 
-const Modal = ({
-  turn,
-  setOpenModal,
-  setIntro,
-  reset,
-  winner,
-  player,
-  setPlayer,
-  setTurn,
-  userSelection,
-}) => {
-  const nextRound = () => {
-    setOpenModal(false)
-    reset()
-  }
+const Modal = ({ setIntro }) => {
+  const { states, functions, constants } = useContext(AppContext)
 
-  const quitGame = () => {
+  const { turn, userSelection, winner, player } = states
+
+  const { reset } = functions
+
+  const { TURNS, TEXT_RESPONSES } = constants
+
+  const backToIntro = () => {
     setIntro(true)
-    setOpenModal(false)
-    setPlayer(null)
-    setTurn(TURNS.X)
     reset()
   }
 
@@ -60,13 +50,13 @@ const Modal = ({
         )}
         <div className=' flex gap-4'>
           <button
-            onClick={quitGame}
+            onClick={backToIntro}
             className=' h-14 w-20 bg-silver hover:bg-silverHover text-xl rounded-bt shadow-shadowReset pb-1'
           >
             QUIT
           </button>
           <button
-            onClick={nextRound}
+            onClick={reset}
             className='h-14 w-40 text-xl rounded-bt shadow-ModalNext pb-1 bg-yellow hover:bg-yellowHover'
           >
             NEXT ROUND

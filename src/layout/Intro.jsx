@@ -1,41 +1,19 @@
 import { useContext } from 'react'
 import { IconLogo, IconOutlineO, IconOutlineX } from '../assets/Icons'
-import { TURNS } from '../constant'
-import { AppContext, AppContextProvider } from '../context/AppContext'
+import { AppContext } from '../context/AppContext'
 
-const Intro = ({
-  setIntro,
-  reset,
-  setOpenModal,
-  setPlayer,
-  setUserSelection,
-  userSelection,
-}) => {
-  const content = useContext(AppContext)
-  console.log(content)
+const Intro = ({ setIntro }) => {
+  const { states, functions, constants } = useContext(AppContext)
 
-  const handleClick = (option) => {
-    if (option === TURNS.X) {
-      setUserSelection(TURNS.X)
-    } else if (option === TURNS.O) {
-      setUserSelection(TURNS.O)
-    }
-  }
+  const { userSelection } = states
 
-  const startGame = () => {
-    reset()
-    setOpenModal(false)
+  const { changeOption, closeModal } = functions
+
+  const { TURNS, OPPONENTS } = constants
+
+  const startGame = (opponent) => {
     setIntro(false)
-  }
-
-  const cpuGame = () => {
-    setPlayer(false)
-    startGame()
-  }
-
-  const playerGame = () => {
-    setPlayer(true)
-    startGame()
+    closeModal(opponent)
   }
 
   return (
@@ -47,7 +25,7 @@ const Intro = ({
         <p className='text-silverHover text-xl'>PICK PLAYER 1'S MARK</p>
         <div className='bg-dark w-full h-20 rounded-bt flex justify-around  p-3'>
           <button
-            onClick={() => handleClick(TURNS.X)}
+            onClick={() => changeOption(TURNS.X)}
             type='button'
             className={`h-full w-1/2 rounded-bt grid place-content-center ${
               userSelection === TURNS.X ? 'bg-silver' : 'bg-dark'
@@ -56,7 +34,7 @@ const Intro = ({
             <IconOutlineX active={userSelection} />
           </button>
           <button
-            onClick={() => handleClick(TURNS.O)}
+            onClick={() => changeOption(TURNS.O)}
             type='button'
             className={`h-full focus:bg-silver w-1/2 rounded-bt grid place-content-center ${
               userSelection === TURNS.O ? 'bg-silver' : 'bg-dark'
@@ -71,14 +49,14 @@ const Intro = ({
       </section>
       <section className='w-full flex flex-col gap-4'>
         <button
-          onClick={() => cpuGame()}
+          onClick={() => startGame(OPPONENTS.CPU)}
           type='button'
           className='w-full h-14 bg-yellow rounded-introSection shadow-shadowCPU pb-2 font-medium text-xl hover:bg-yellowHover'
         >
           NEW GAME (VS CPU)
         </button>
         <button
-          onClick={() => playerGame()}
+          onClick={() => startGame(OPPONENTS.PLAYER)}
           type='button'
           className='w-full h-14 bg-blue rounded-introSection shadow-shadowPlayer pb-2 font-medium text-xl hover:bg-blueHover'
         >

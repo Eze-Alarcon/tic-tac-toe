@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AppContext } from '../context/AppContext'
 
-const Footer = ({ score }) => {
+const Footer = () => {
+  const { states } = useContext(AppContext)
+
+  const { score } = states
   return (
     <article className='grid grid-cols-3 grid-rows-1 gap-5'>
       <div className='h-16 w-24 rounded-bt flex flex-col justify-center items-center bg-blue'>

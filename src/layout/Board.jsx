@@ -1,48 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Header } from '../components/Header'
 import { Pad } from '../components/Pad'
 import { Footer } from '../components/Footer'
 import { Modal } from '../components/Modal'
 import { createPortal } from 'react-dom'
+import { AppContext } from '../context/AppContext'
 
-const Board = ({
-  winner,
-  turn,
-  TURNS,
-  reset,
-  board,
-  updateBoard,
-  score,
-  openModal,
-  setOpenModal,
-  setIntro,
-  player,
-  setPlayer,
-  setTurn,
-  userSelection,
-}) => {
+const Board = ({ setIntro }) => {
+  const { states } = useContext(AppContext)
+
+  const { openModal } = states
+
   return (
     <>
-      <Header winner={winner} TURNS={TURNS} turn={turn} reset={reset} />
+      <Header />
       <section className=''>
-        <Pad board={board} TURNS={TURNS} updateBoard={updateBoard} />
-        <Footer score={score} />
+        <Pad />
+        <Footer />
       </section>
-      {openModal &&
-        createPortal(
-          <Modal
-            setOpenModal={setOpenModal}
-            setIntro={setIntro}
-            turn={turn}
-            reset={reset}
-            winner={winner}
-            player={player}
-            setPlayer={setPlayer}
-            setTurn={setTurn}
-            userSelection={userSelection}
-          />,
-          document.body
-        )}
+      {openModal && createPortal(<Modal setIntro={setIntro} />, document.body)}
     </>
   )
 }
