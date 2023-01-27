@@ -1,5 +1,7 @@
+import { useContext } from 'react'
 import { IconLogo, IconOutlineO, IconOutlineX } from '../assets/Icons'
 import { TURNS } from '../constant'
+import { AppContext, AppContextProvider } from '../context/AppContext'
 
 const Intro = ({
   setIntro,
@@ -9,6 +11,9 @@ const Intro = ({
   setUserSelection,
   userSelection,
 }) => {
+  const content = useContext(AppContext)
+  console.log(content)
+
   const handleClick = (option) => {
     if (option === TURNS.X) {
       setUserSelection(TURNS.X)

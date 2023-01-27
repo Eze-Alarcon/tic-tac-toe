@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
 import {
   BOARD,
@@ -10,6 +10,7 @@ import {
 } from './constant'
 import { Board } from './layout/Board'
 import { Intro } from './layout/Intro'
+import { AppContextProvider, AppContext } from './context/AppContext'
 
 const App = () => {
   const [board, setBoard] = useState(BOARD)
@@ -81,39 +82,41 @@ const App = () => {
   })
 
   return (
-    <main className='w-full h-screen flex flex-col justify-center items-center gap-5 px-6'>
-      {intro && (
-        <Intro
-          player={player}
-          setIntro={setIntro}
-          reset={reset}
-          setOpenModal={setOpenModal}
-          setPlayer={setPlayer}
-          setTurn={setTurn}
-          turn={turn}
-          setUserSelection={setUserSelection}
-          userSelection={userSelection}
-        />
-      )}
-      {!intro && (
-        <Board
-          winner={winner}
-          turn={turn}
-          TURNS={TURNS}
-          board={board}
-          score={score}
-          openModal={openModal}
-          player={player}
-          updateBoard={updateBoard}
-          reset={reset}
-          setOpenModal={setOpenModal}
-          setIntro={setIntro}
-          setPlayer={setPlayer}
-          setTurn={setTurn}
-          userSelection={userSelection}
-        />
-      )}
-    </main>
+    <AppContextProvider>
+      <main className='w-full h-screen flex flex-col justify-center items-center gap-5 px-6'>
+        {intro && (
+          <Intro
+            player={player}
+            setIntro={setIntro}
+            reset={reset}
+            setOpenModal={setOpenModal}
+            setPlayer={setPlayer}
+            setTurn={setTurn}
+            turn={turn}
+            setUserSelection={setUserSelection}
+            userSelection={userSelection}
+          />
+        )}
+        {!intro && (
+          <Board
+            winner={winner}
+            turn={turn}
+            TURNS={TURNS}
+            board={board}
+            score={score}
+            openModal={openModal}
+            player={player}
+            updateBoard={updateBoard}
+            reset={reset}
+            setOpenModal={setOpenModal}
+            setIntro={setIntro}
+            setPlayer={setPlayer}
+            setTurn={setTurn}
+            userSelection={userSelection}
+          />
+        )}
+      </main>
+    </AppContextProvider>
   )
 }
 
