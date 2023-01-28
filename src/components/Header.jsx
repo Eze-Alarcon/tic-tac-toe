@@ -7,7 +7,7 @@ const Header = () => {
 
   const { winner, turn } = states
 
-  const { reset } = functions
+  const { openResetModal } = functions
 
   const { TURNS } = constants
   return (
@@ -32,7 +32,7 @@ const Header = () => {
       <div className='w-24 h-10 flex justify-end'>
         <button
           type='button'
-          onClick={reset}
+          onClick={openResetModal}
           className=' w-10 h-10 bg-silver rounded-bt grid place-content-center shadow-shadowReset hover:bg-silverHover'
         >
           <IconRestart />

@@ -19,6 +19,7 @@ const AppContextProvider = ({ children }) => {
   const [turn, setTurn] = useState(TURNS.X)
   const [score, setScore] = useState(INITIAL_COUNTER)
   const [openModal, setOpenModal] = useState(false)
+  const [resetModal, setResetModal] = useState(false)
   const [player, setPlayer] = useState(null)
 
   const updateScore = (tie = false) => {
@@ -70,9 +71,20 @@ const AppContextProvider = ({ children }) => {
 
   const reset = () => {
     openModal && setOpenModal(false)
+    resetModal && setResetModal(false)
     setWinner(null)
     setBoard(BOARD)
     setTurn(TURNS.X)
+  }
+
+  // Header functions
+
+  const openResetModal = () => {
+    setResetModal(true)
+  }
+
+  const closeResetModal = () => {
+    setResetModal(false)
   }
 
   // Intro functions
@@ -110,6 +122,7 @@ const AppContextProvider = ({ children }) => {
     turn,
     score,
     openModal,
+    resetModal,
     player,
   }
 
@@ -129,6 +142,8 @@ const AppContextProvider = ({ children }) => {
     changeOption,
     closeModal,
     quitGame,
+    openResetModal,
+    closeResetModal,
   }
 
   const constants = {

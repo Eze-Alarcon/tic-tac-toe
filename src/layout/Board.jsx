@@ -5,11 +5,12 @@ import { Footer } from '../components/Footer'
 import { Modal } from '../components/Modal'
 import { createPortal } from 'react-dom'
 import { AppContext } from '../context/AppContext'
+import { ModalRestart } from './ModalRestart'
 
 const Board = ({ setIntro }) => {
   const { states } = useContext(AppContext)
 
-  const { openModal } = states
+  const { openModal, resetModal } = states
 
   return (
     <>
@@ -19,6 +20,7 @@ const Board = ({ setIntro }) => {
         <Footer />
       </section>
       {openModal && createPortal(<Modal setIntro={setIntro} />, document.body)}
+      {resetModal && createPortal(<ModalRestart />, document.body)}
     </>
   )
 }
