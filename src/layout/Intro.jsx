@@ -17,7 +17,7 @@ const Intro = ({ setIntro }) => {
   }
 
   return (
-    <section className='h-75 w-full max-w-[330px] flex flex-col items-center gap-8 justify-center'>
+    <section className='w-full max-w-[330px] flex flex-col items-center gap-8 justify-center md:max-w-[460px]'>
       <div className='w-full flex justify-center'>
         <IconLogo />
       </div>

@@ -8,7 +8,7 @@ const FillTile = ({ index, type = null }) => {
   const { TURNS } = constants
 
   const NORMAL_SQUARE =
-    'w-24 h-24 bg-semiDark rounded-bt shadow-shadowBT hover:cursor-pointer hover:bg-dark grid place-content-center pb-2'
+    'w-24 h-24 bg-semiDark rounded-bt shadow-shadowBT hover:cursor-pointer hover:bg-dark grid place-content-center pb-2 md:h-36 md:w-36'
 
   if (type === TURNS.O) {
     return (

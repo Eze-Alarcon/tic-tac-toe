@@ -7,17 +7,17 @@ const Footer = () => {
   const { score } = states
   return (
     <article className='grid grid-cols-3 grid-rows-1 gap-5'>
-      <div className='h-16 w-24 rounded-bt flex flex-col justify-center items-center bg-blue'>
-        <p className='font-medium text-base'>X (YOU)</p>
-        <p className='font-bold text-xl'>{score.X}</p>
+      <div className='h-16 w-24 rounded-bt flex flex-col justify-center items-center bg-blue md:w-36 md:h-20'>
+        <p className='font-medium text-base md:text-xl'>X (YOU)</p>
+        <p className='font-bold text-xl md:text-2xl'>{score.X}</p>
       </div>
-      <div className='h-16 w-24 rounded-bt flex flex-col justify-center items-center bg-silver'>
-        <p className='font-medium text-base'>TIES</p>
-        <p className='font-bold text-xl'>{score.TIES}</p>
+      <div className='h-16 w-24 rounded-bt flex flex-col justify-center items-center bg-silver md:w-36 md:h-20'>
+        <p className='font-medium text-base md:text-xl'>TIES</p>
+        <p className='font-bold text-xl md:text-2xl'>{score.TIES}</p>
       </div>
-      <div className='h-16 w-24 rounded-bt flex flex-col justify-center items-center bg-yellow'>
-        <p className='font-medium text-base'>O (CPU)</p>
-        <p className='font-bold text-xl'>{score.O}</p>
+      <div className='h-16 w-24 rounded-bt flex flex-col justify-center items-center bg-yellow md:w-36 md:h-20'>
+        <p className='font-medium text-base md:text-xl'>O (CPU)</p>
+        <p className='font-bold text-xl md:text-2xl'>{score.O}</p>
       </div>
     </article>
   )
