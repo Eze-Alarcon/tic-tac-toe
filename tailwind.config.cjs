@@ -17,6 +17,8 @@ module.exports = {
     },
     boxShadow: {
       shadowBT: 'inset 0px -8px 0px #10212A',
+      shadowBTWinO: 'inset 0px -8px 0px #CC8B13',
+      shadowBTWinX: 'inset 0px -8px 0px #118C87',
       shadowTurn: 'inset 0px -4px 0px #10212A',
       shadowReset: 'inset 0px -4px 0px #6B8997',
       shadowCPU: 'inset 0px -8px 0px #CC8B13',

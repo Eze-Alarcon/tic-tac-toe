@@ -44,7 +44,10 @@ const someoneWin = (board) => {
       positionA === positionB &&
       positionA === positionC
     ) {
-      return true
+      return {
+        win: true,
+        condition
+      }
     }
   } return false
 }

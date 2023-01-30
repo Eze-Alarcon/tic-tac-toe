@@ -21,6 +21,7 @@ const AppContextProvider = ({ children }) => {
   const [openModal, setOpenModal] = useState(false)
   const [resetModal, setResetModal] = useState(false)
   const [player, setPlayer] = useState(null)
+  const [winCombo, setWinCombo] = useState([])
 
   const updateScore = (tie = false) => {
     if (tie) {
@@ -49,9 +50,10 @@ const AppContextProvider = ({ children }) => {
     newBoard[index] = turn
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
     const newWinner = someoneWin(newBoard)
-    if (!newWinner) setTurn(newTurn)
-    if (newWinner) {
-      setWinner(newWinner)
+    if (!newWinner.win) setTurn(newTurn)
+    if (newWinner.win) {
+      setWinner(newWinner.win)
+      setWinCombo(newWinner.condition)
       updateScore()
       setOpenModal(true)
     } else if (checkEndGame(newBoard)) {
@@ -75,6 +77,7 @@ const AppContextProvider = ({ children }) => {
     setWinner(null)
     setBoard(BOARD)
     setTurn(TURNS.X)
+    setWinCombo([])
   }
 
   // Header functions
@@ -124,6 +127,7 @@ const AppContextProvider = ({ children }) => {
     openModal,
     resetModal,
     player,
+    winCombo,
   }
 
   const stateUpdates = {
