@@ -2,10 +2,10 @@ import React, { useContext } from 'react'
 import { Header } from '../components/Header'
 import { Pad } from '../components/Pad'
 import { Footer } from '../components/Footer'
-import { Modal } from '../components/Modal'
 import { createPortal } from 'react-dom'
 import { AppContext } from '../context/AppContext'
 import { ModalRestart } from './ModalRestart'
+import { Modal } from './Modal'
 
 const Board = ({ setIntro }) => {
   const { states } = useContext(AppContext)

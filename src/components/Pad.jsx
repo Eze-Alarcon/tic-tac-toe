@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { AppContext } from '../context/AppContext'
-import { BlankTile } from './tiles/BlankTile'
-import { FillTile } from './tiles/FillTile'
-import { WinTile } from './tiles/WinTile'
+import { BlankTile } from './padTiles/BlankTile'
+import { FillTile } from './padTiles/FillTile'
+import { WinTile } from './padTiles/WinTile'
 
 const Pad = () => {
   const { states, constants } = useContext(AppContext)
