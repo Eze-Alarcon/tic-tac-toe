@@ -1,4 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react'
+import confetti from 'canvas-confetti'
 import {
   BOARD,
   TURNS,
@@ -7,7 +8,7 @@ import {
   TEXT_RESPONSES,
   someoneWin,
   checkEndGame,
-  getRandomIndex,
+  getRandomIndex
 } from '../constant'
 
 const AppContext = createContext(true)
@@ -23,7 +24,7 @@ const AppContextProvider = ({ children }) => {
   const [player, setPlayer] = useState(null)
   const [winCombo, setWinCombo] = useState([])
 
-  const updateScore = (tie = false) => {
+  function updateScore (tie = false) {
     if (tie) {
       const tiesScore = score.TIES + 1
       return setScore({ ...score, TIES: tiesScore })
@@ -36,7 +37,12 @@ const AppContextProvider = ({ children }) => {
     }
   }
 
-  const updateBoard = (index) => {
+  function throwConfetti () {
+    if (!player && turn === userSelection) confetti()
+    else if (player) confetti()
+  }
+
+  function updateBoard (index) {
     if (
       !player &&
       turn !== userSelection &&
@@ -56,6 +62,7 @@ const AppContextProvider = ({ children }) => {
       setWinCombo(newWinner.condition)
       updateScore()
       setOpenModal(true)
+      throwConfetti()
     } else if (checkEndGame(newBoard)) {
       setWinner(false)
       updateScore(true)
@@ -64,14 +71,14 @@ const AppContextProvider = ({ children }) => {
     setBoard(() => newBoard)
   }
 
-  const fightCPU = () => {
+  function fightCPU () {
     const index = getRandomIndex()
     setTimeout(() => {
       updateBoard(index)
     }, 50)
   }
 
-  const reset = () => {
+  function reset () {
     openModal && setOpenModal(false)
     resetModal && setResetModal(false)
     setWinner(null)
@@ -82,16 +89,16 @@ const AppContextProvider = ({ children }) => {
 
   // Header functions
 
-  const openResetModal = () => {
+  function openResetModal () {
     setResetModal(true)
   }
 
-  const closeResetModal = () => {
+  function closeResetModal () {
     setResetModal(false)
   }
 
   // Intro functions
-  const changeOption = (option) => {
+  function changeOption (option) {
     if (option === TURNS.X) {
       setUserSelection(TURNS.X)
     } else if (option === TURNS.O) {
@@ -99,14 +106,14 @@ const AppContextProvider = ({ children }) => {
     }
   }
 
-  const closeModal = (opponent) => {
+  function closeModal (opponent) {
     opponent === OPPONENTS.CPU ? setPlayer(false) : setPlayer(true)
     reset()
   }
 
   // Modal functions
 
-  const quitGame = () => {
+  function quitGame () {
     setPlayer(null)
     reset()
   }
@@ -127,7 +134,7 @@ const AppContextProvider = ({ children }) => {
     openModal,
     resetModal,
     player,
-    winCombo,
+    winCombo
   }
 
   const stateUpdates = {
@@ -137,7 +144,7 @@ const AppContextProvider = ({ children }) => {
     setTurn,
     setScore,
     setOpenModal,
-    setPlayer,
+    setPlayer
   }
 
   const functions = {
@@ -147,13 +154,13 @@ const AppContextProvider = ({ children }) => {
     closeModal,
     quitGame,
     openResetModal,
-    closeResetModal,
+    closeResetModal
   }
 
   const constants = {
     TURNS,
     TEXT_RESPONSES,
-    OPPONENTS,
+    OPPONENTS
   }
 
   return (

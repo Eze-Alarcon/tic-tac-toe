@@ -11,7 +11,7 @@ const Intro = ({ setIntro }) => {
 
   const { TURNS, OPPONENTS } = constants
 
-  const startGame = (opponent) => {
+  function startGame (opponent) {
     setIntro(false)
     closeModal(opponent)
   }

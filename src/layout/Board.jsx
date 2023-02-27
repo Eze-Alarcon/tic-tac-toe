@@ -4,7 +4,7 @@ import { Pad } from '../components/Pad'
 import { Footer } from '../components/Footer'
 import { createPortal } from 'react-dom'
 import { AppContext } from '../context/AppContext'
-import { ModalRestart } from './ModalRestart'
+import { ModalRestart } from '../components/modal/ModalRestart'
 import { Modal } from './Modal'
 
 const Board = ({ setIntro }) => {
@@ -15,7 +15,7 @@ const Board = ({ setIntro }) => {
   return (
     <>
       <Header />
-      <section className=''>
+      <section>
         <Pad />
         <Footer />
       </section>

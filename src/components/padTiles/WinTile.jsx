@@ -8,7 +8,7 @@ const WinTile = ({ index, type }) => {
   const { TURNS } = constants
 
   const WIN_SQUARE =
-    'w-24 h-24 rounded-bt hover:cursor-pointer grid place-content-center pb-2'
+    'w-24 h-24 rounded-bt hover:cursor-pointer grid place-content-center pb-2 md:h-36 md:w-36'
 
   const WIN_SQUARE_O = 'bg-yellow shadow-shadowBTWinO'
 
